@@ -426,6 +426,8 @@ jobs:
 
       - name: Send Discord message
         working-directory: csx
+        env:
+          DOTNET_ROLL_FORWARD: Major
         run: |
              dotnet tool restore
              dotnet script discord-webhook.csx ${{ secrets.DISCORD_WEBHOOK }} ${{ github.sha }} $(dotnet gmodnet-vt getBranchName ../version.json) $(dotnet gmodnet-vt getVersion ../version.json --skip-build-data)
